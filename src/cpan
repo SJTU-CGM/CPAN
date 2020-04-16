@@ -1,0 +1,76 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use CPANextractNovSeq;
+use CPANmergeNovSeq;
+use CPANclusterNovSeq;
+use CPANgeneCov;
+use CPANmergeGeneCov;
+use CPANgeneExist;
+
+checkPRE() if @ARGV==0;
+PrintUsage() if @ARGV<1;
+
+my %commands=(
+	"extractNovSeq"   => 0,
+        "mergeNovSeq"     => 0,
+        "clusterNovSeq"   => 0,
+	"geneCov"         => 0,
+        "mergeGeneCov"    => 0,
+        "geneExist"       => 0
+);
+
+my $com=shift @ARGV;
+if(defined $commands{$com}){
+	$commands{$com}=1;
+}else{
+	print STDERR "Invalid command: $com.\n";
+	PrintUsage();
+}
+
+if($commands{"extractNovSeq"}){
+	extractNovSeq::extractNovSeq(@ARGV);
+}elsif($commands{"geneCov"}){
+	geneCov::geneCov(@ARGV);
+}elsif($commands{"mergeNovSeq"}){
+	mergeNovSeq::mergeNovSeq(@ARGV);
+}elsif($commands{"clusterNovSeq"}){
+        clusterNovSeq::clusterNovSeq(@ARGV);
+}elsif($commands{"mergeGeneCov"}){
+        mergeGeneCov::mergeGeneCov(@ARGV);
+}elsif($commands{"geneExist"}){
+        geneExist::geneExist(@ARGV);
+}
+
+sub PrintUsage{
+	print STDERR "\nProgram: cpan (Tools for cancer pan-genome analysis).\nVesion: 1.00\n\n";
+	print STDERR "Usage: cpan <command> ...\n\n";
+	print STDERR "Commands:\n";
+	print STDERR "  -- Sequence analysis\n";
+	print STDERR "     extractNovSeq        \tExtract novel sequences from partially unaligned contigs\n";
+	print STDERR "     mergeNovSeq          \tMerge novel sequences from multiple samples\n";
+        print STDERR "     clusterNovSeq        \tCluster novel sequences\n";
+	print STDERR "\n";
+	print STDERR "  -- PAV analysis\n";
+	print STDERR "     geneCov              \tCalculate gene and CDS coverage of each gene in both normal and tumor samples\n";
+	print STDERR "     mergeGeneCov         \tMerge gene body coverage and cds coverage of each individual genome\n";
+	print STDERR "     geneExist            \tDetermine gene presence-absence based on gene and CDS coverage\n";
+	print STDERR "     associate            \tConduct association analysis based on PAV\n";
+	print STDERR "\n"; 
+        exit(-1);
+}
+
+sub checkPRE{
+    my $exec="Rscript";
+    my @path=split /:/,$ENV{PATH};
+    my $fpflag=0;
+    foreach my $p (@path){
+        $p.="/".$exec;
+        if(-e $p && -x $p){
+            $fpflag=1;
+            last;
+        }
+    }
+    die("Can not find Rscript in your PATH!\n") unless($fpflag);
+}
+

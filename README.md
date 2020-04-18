@@ -2,7 +2,7 @@
 
 ## Introduction
     Cancer genomics studies are essentially relied on the human reference genome. However, tens of million base-pairs are still missing in the current human reference genome sequence. Pan-genome analysis has been proved its powerful in plant and human et.al. We expand the pan-genome analysis to study cancer genomes. 
-    The CPAN homepage is [http://cgm.sjtu.edu.cn/cpan/CPAN.html](http://cgm.sjtu.edu.cn/cpan/CPAN.html).
+    The CPAN homepage is http://cgm.sjtu.edu.cn/cpan/CPAN.html.
 ## Installation
 - Requirements
     + R 3.1 or later (https://www.r-project.org/)

@@ -15,7 +15,7 @@ The CPAN homepage is http://cgm.sjtu.edu.cn/cpan/CPAN.html.
         ```
         git clone git@github.com:SJTU-CGM/CPAN.git
         ```
-    + Comile:
+    + Compile:
         ```
         make
         ```
@@ -30,5 +30,3 @@ The CPAN homepage is http://cgm.sjtu.edu.cn/cpan/CPAN.html.
         ```
         source ~/bash_profile.
         ```
-    + 
-    + 

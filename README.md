@@ -22,5 +22,5 @@ The CPAN homepage is http://cgm.sjtu.edu.cn/cpan/CPAN.html.
     ```
 - And run:
     ```
-    source ~/bash_profile
+    source ~/.bash_profile
     ```
